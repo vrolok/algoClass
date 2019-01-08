@@ -46,34 +46,52 @@ myStack.until(7)
 => 4
 What's the time complexity?
 
-
-
- */
+*/
 
 function Stack(capacity) {
-  // implement me...
+  this.max = capacity; // 0 indexed
+	this.size = 0;
+  this.store = {};
 }
 
 Stack.prototype.push = function(value) {
-  // implement me...
+  if (this.size < this.max) {
+    this.store[this.size++] = value;
+		return this.size;
+  }
+	return 'Max capacity already reached. Remove element before adding a new one.';
 };
 // Time complexity:
 
 Stack.prototype.pop = function() {
-  // implement me...
+	const value = this.store[--this.size];
+  delete this.store[this.size];
+  if (this.size < 0) {
+		this.size = 0;
+  }
+	return value;
 };
 // Time complexity:
 
 Stack.prototype.peek = function() {
-  // implement me...
+  return this.store[this.size - 1] || 'empty';
 };
 // Time complexity:
 
 Stack.prototype.count = function() {
-  // implement me...
+  return this.size;
 };
-// Time complexity:
 
+Stack.prototype.contains = function(value) {
+  for (let i in this.store) {
+    if (this.store[i] === value) {
+      return true;
+    }
+  }
+  return false;
+};
+
+module.exports = Stack;
 
 /*
 *** Exercises:
