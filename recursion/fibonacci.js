@@ -10,7 +10,7 @@ What is the time complexity? Can you think of optimizing your solution? (Hint: l
 */
 "use strict";
 
-const map = {};
+let map = {};
 
 function fibTopDown(n) {
 	if (n <= 1) {

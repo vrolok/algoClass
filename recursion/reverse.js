@@ -6,10 +6,8 @@ reverse('abcdefg')
 */
 
 function reverse(str) {
-	if (str === '') {
+	if (str.trim() === '') {
 		return '';
 	}
 	return reverse(str.slice(1)) + str.slice(0, 1);
 }
-
-console.log(reverse('abcdefg'));
