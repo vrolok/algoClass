@@ -49,7 +49,7 @@ What's the time complexity?
 */
 
 function Stack(capacity) {
-  this.max = capacity; // 0 indexed
+  this.max = capacity || Infinity; // 0 indexed
 	this.size = 0;
   this.store = {};
 }
@@ -63,8 +63,8 @@ Stack.prototype.push = function(value) {
 };
 // Time complexity:
 
-Stack.prototype.pop = function() {
-	const value = this.store[--this.size];
+Stack.prototype.pop = function pop() {
+	var value = this.store[--this.size];
   delete this.store[this.size];
   if (this.size < 0) {
 		this.size = 0;
@@ -73,7 +73,7 @@ Stack.prototype.pop = function() {
 };
 // Time complexity:
 
-Stack.prototype.peek = function() {
+Stack.prototype.peek = function peek() {
   return this.store[this.size - 1] || 'empty';
 };
 // Time complexity:
@@ -82,7 +82,7 @@ Stack.prototype.count = function() {
   return this.size;
 };
 
-Stack.prototype.contains = function(value) {
+Stack.prototype.contains = function contains(value) {
   for (let i in this.store) {
     if (this.store[i] === value) {
       return true;

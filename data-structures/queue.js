@@ -102,5 +102,43 @@ Queue.prototype.contains = function(value) {
 
 3. Given a tree, print out the value of each node in breadth-first order using a queue data structure.
 
+*/
 
- */
+var Stack = require('./stack');
+
+function QueueTS(capacity) {
+	this._in = new Stack();
+	this._out = new Stack();
+}
+
+QueueTS.prototype.enqueue = function(value) {
+	this._in.push(value);
+}
+
+QueueTS.prototype.dequeue = function() {
+	// if "_out Stack" is empty do move "_in Stack" elements for dequeue
+	if (this._out.count() === 0) this._move();
+	return this._out.pop();
+}
+
+QueueTS.prototype._move = function() {
+	// pop elements from _in Stack, add them to _out Stack
+	// e.g. 1, 2, 3 => 3, 2, 1
+	while (this._in.count() > 0) {
+		this._out.push(this._in.pop());
+	}
+}
+
+QueueTS.prototype.count = function() {
+	return this._in.count() + this._out.count();
+}
+
+QueueTS.prototype.peek = function() {
+	if (this._out.count() === 0) this._move();
+	return this._out.peek();
+}
+ 
+module.exports = {
+	Queue,
+	QueueTS
+};
